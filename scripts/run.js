@@ -1,10 +1,10 @@
 require("dotenv").config();
 
-const {UNREVEALED_URI, REVEALED_URI} = process.env;
+const {REVEALED_URI, NOTREVEALED_URI} = process.env;
 
 const main = async () => {
     const eqKeysFactory = await hre.ethers.getContractFactory("EQKEYS");
-    const keysContract = await eqKeysFactory.deploy("eq keys", "KEYS", REVEALED_URI, UNREVEALED_URI);
+    const keysContract = await eqKeysFactory.deploy("eq keys", "KEYS", REVEALED_URI, NOTREVEALED_URI);
     await keysContract.deployed();
     console.log("Contract deployed to:", keysContract.address);
 

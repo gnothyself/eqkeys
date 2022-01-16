@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const {UNREVEALED_URI, REVEALED_URI} = process.env;
+const {REVEALED_URI, NOTREVEALED_URI} = process.env;
 
 const main = async () => {
     const [deployer] = await hre.ethers.getSigners();
@@ -10,7 +10,7 @@ const main = async () => {
     console.log("Account balance: ", accountBalance.toString());
   
     const Token = await hre.ethers.getContractFactory("EQKEYS");
-    const portal = await Token.deploy("eq keys", "KEYS", REVEALED_URI, UNREVEALED_URI);
+    const portal = await Token.deploy("eq keys", "KEYS", REVEALED_URI, NOTREVEALED_URI);
     await portal.deployed();
   
     console.log("EQ Keys address: ", portal.address);
